@@ -8,10 +8,13 @@ const passport = require('passport');
 const compression = require('compression');
 const cors = require('cors');
 const async = require('async');
+const faker = require('faker');
+var distance = require('geo-distance');
 require('dotenv').config()
-const { Client, Pool } = require('pg')
+
 
 const secret = require('./config/secret')
+const {divisionService} = require('./route/services')
 
 const db = require("knex")({
     client: "pg",
@@ -45,7 +48,8 @@ app.use(cors(
 
 
 //new routes
-//require('./routes/post.route')(app, async);
+require('./route/seed')(app, async, faker);
+require('./route/panic')(app, distance, divisionService);
  
 
 // app.get('*', (req, res)=>{

@@ -473,6 +473,11 @@ express@^4.17.1:
     utils-merge "1.0.1"
     vary "~1.1.2"
 
+faker@^5.5.3:
+  version "5.5.3"
+  resolved "https://registry.yarnpkg.com/faker/-/faker-5.5.3.tgz#c57974ee484431b25205c2c8dc09fda861e51e0e"
+  integrity sha512-wLTv2a28wjUyWkbnX7u/ABZBkUkIF2fCd73V6P2oFqEGEktDfzWx4UxrSqtPRw0xPRAcjeAOIiJWqZm3pP4u3g==
+
 fill-range@^7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/fill-range/-/fill-range-7.0.1.tgz#1919a6a7c75fe38b2c7c77e5198535da9acdda40"
@@ -512,6 +517,11 @@ function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
+
+geo-distance@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/geo-distance/-/geo-distance-0.2.0.tgz#687bfa32ebb95a51438d219592388d74776b4418"
+  integrity sha512-FAWcCG6vhrfHIXMBipeNj1p6U4NucdlOMoTYrgRtFdudZEQjjrCDTYaw2Nh5go9MhjhY/RcZ+GVlAOa/dLDiVQ==
 
 get-stream@^4.1.0:
   version "4.1.0"
