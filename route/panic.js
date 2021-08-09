@@ -1,5 +1,5 @@
 module.exports = (router, distance, service) => {
-    console.log("service", service);
+
     router.get("/panic", (req, res, next) => {
         const db = req.app.get('db');
         service.getAllDivisions(db).then(data => {
@@ -20,6 +20,14 @@ module.exports = (router, distance, service) => {
                 return prev.Cost < curr.Cost ? prev : curr;
             });
             res.send(shortDistance);
+        });
+
+    })
+
+    router.get("/division", (req, res, next) => {
+        const db = req.app.get('db');
+        service.getAllDivisions(db).then(data => {
+            res.send(data);
         });
 
     })
