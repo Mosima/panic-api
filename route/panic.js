@@ -19,8 +19,6 @@ module.exports = (router, distance, service) => {
             shortDistance = distanceKM.reduce((prev, curr) => {
                 return prev.Cost < curr.Cost ? prev : curr;
             });
-            console.log("shortDistance shortDistance", shortDistance);
-
             res.send(shortDistance);
         });
 
