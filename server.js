@@ -42,7 +42,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(morgan('dev'));
 app.use(cors(
-    {origin: ['http://localhost:3000', 'http://localhost:3001'], 
+    {origin: ['http://localhost:3000', 'http://localhost:3001'],
     credentials: true
 }));
 
@@ -50,7 +50,7 @@ app.use(cors(
 //new routes
 require('./route/seed')(app, async, faker);
 require('./route/panic')(app, distance, divisionService);
- 
+
 
 // app.get('*', (req, res)=>{
 //    //res.sendFile(path.join(__dirname + '/client/build/index.html'));
@@ -58,6 +58,6 @@ require('./route/panic')(app, distance, divisionService);
 app.get('/', (req, res) => {
     res.send("Running")
   })
-  
+
 
 app.listen(secret.port, () => console.log(`Node running on server ${secret.port}`));

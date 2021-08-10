@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+//import 'leaflet/dist/leaflet.css';
 
 import * as actions from './action'
 
@@ -12,7 +13,7 @@ function Division(props) {
 
     console.log(props)
     return (
-        <div className="division">
+        <div className="map" style={{width:'50%', height:'60%', alignItems:'center', alignContent:'center'}}>
             <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
