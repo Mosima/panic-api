@@ -8,6 +8,7 @@
     "async": "^3.2.0",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
+    "concurrently": "^6.2.1",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
@@ -19,6 +20,11 @@
     "nodemon": "^2.0.12",
     "passport": "^0.4.1",
     "path": "^0.12.7",
-    "pg": "^8.7.1"
+    "pg": "^8.7.1",
+    "random-location": "^1.1.3"
+  },
+  "scripts": {
+    "con": "yarn add concurrently",
+    "dev": "concurrently  \"yarn && nodemon\" \"cd app && yarn && yarn run start\""
   }
 }

@@ -1,27 +1,49 @@
-module.exports = (router, distance, service) => {
-    console.log("service", service);
-    router.get("/panic", (req, res, next) => {
+const randomLocation = require('random-location')
+
+module.exports = (router, distance, service, panicService) => {
+    router.post("/panic", (req, res, next) => {
         const db = req.app.get('db');
         service.getAllDivisions(db).then(data => {
             let shortDistance = 0
             let distanceKM = []
             const panic = {
-                lat: -46.3927,
-                lon: -82.0444
+                lat: req.body.val.lat,
+                lon: req.body.val.long,
             };
 
             distanceKM = data.map((x, ind) => {
                 return {
-                    distance: distance.between(panic, x).radians,
+                    distance: distance.between(panic, {lat: x.latitude, lon: x.longitude}).radians,
                     division: x.division
                 }
             })
             shortDistance = distanceKM.reduce((prev, curr) => {
-                return prev.Cost < curr.Cost ? prev : curr;
+                return prev.distance < curr.distance ? prev : curr;
             });
-            res.send(shortDistance);
+            let obj = {
+                division: shortDistance.division,
+                distance: shortDistance.distance,
+                user: req.body.val.user,
+                userlat: req.body.val.lat,
+                userlon: req.body.val.long,
+            }
+
+            panicService.insertPanic(db, obj).then(data => {
+                res.send(data);
+            })
+
+
+        });
+
+    })
+
+    router.get("/division", (req, res, next) => {
+        const db = req.app.get('db');
+        service.getAllDivisions(db).then(data => {
+            res.send(data);
         });
 
     })
 
 }
+
