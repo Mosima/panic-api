@@ -10,6 +10,8 @@ const cors = require('cors');
 const async = require('async');
 const faker = require('faker');
 var distance = require('geo-distance');
+const randomLocation = require('random-location')
+
 require('dotenv').config()
 
 
@@ -48,7 +50,7 @@ app.use(cors(
 
 
 //new routes
-require('./route/seed')(app, async, faker);
+require('./route/seed')(app, async, faker, randomLocation);
 require('./route/panic')(app, distance, divisionService);
 
 

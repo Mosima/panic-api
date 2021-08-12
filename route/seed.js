@@ -1,52 +1,25 @@
 
-
-module.exports = (router, async,faker) => {
+let R = 500 // meters
+module.exports = (router, async,faker, randomLocation) => {
     router.get("/seed",  (req, res, next) => {
         const db = req.app.get('db');
-        db.schema.hasTable("users").then(function (exists) {
-            if (!exists) {
-                db.schema
-                    .createTable("users", function (table) {
-                        table.increments("id").primary();
-                        table.string("name");
-                        table.string("email");
-                        table.string("lat")
-                        table.string("lon")
-                    })
-                    .then(function () {
-                        const recordsLength = Array.from(Array(100).keys());
-                        const records = recordsLength.map(rec => ({
-                            name: faker.name.findName(),
-                            email: faker.internet.email(),
-                            lat: faker.address.latitude(),
-                            long: faker.address.longitude(),
-                        }));
-                        db("users")
-                            .insert(records)
-                            .then(() => {
-                                res.send("Seeded  user data");
-                            });
-                    });
-            } else {
-                res.send("Table users exists - Seeded data");
-            }
-        });
-
         db.schema.hasTable("division").then(function (exists) {
             if (!exists) {
+                console.log("object,", randomGeo().longitude);
+
                 db.schema
                     .createTable("division", function (table) {
                         table.increments("id").primary();
                         table.string("division")
-                        table.string("lat")
-                        table.string("lon")
+                        table.string("latitude")
+                        table.string("longitude")
                     })
                     .then(function () {
-                        const recordsLength = Array.from(Array(50).keys());
+                        const recordsLength = Array.from(Array(10).keys());
                         const records = recordsLength.map(rec => ({
                             division: faker.address.city(),
-                            lat: faker.address.latitude(),
-                            lon: faker.address.longitude(),
+                            latitude: randomGeo().latitude,
+                            longitude: randomGeo().longitude,
                         }));
                         db("division")
                             .insert(records)
@@ -58,7 +31,19 @@ module.exports = (router, async,faker) => {
                 res.send("Table division exists - Seeded data");
             }
         });
-
         
     });
+
+  function randomGeo(center, radius) {
+        const P = {
+            latitude: -25.9928,
+            longitude:  28.1225
+          }
+          const randomPoint = randomLocation.randomCirclePoint(P, R)
+          R = R + 5000
+          return randomPoint
+    }
 }
+
+
+  
