@@ -38,7 +38,6 @@ function Division(props) {
         props.actions.getDivisions()
     }, []);
 
-    console.log(props.state.admin.division)
     const { division } = props.state.admin
     const { userPanic } = props.state.user
     return (
@@ -52,13 +51,11 @@ function Division(props) {
                         />
                         {
                             userPanic ? userPanic.map((user, index) => {
-                                L.marker([user.latitude,  user.latitude]).addTo(MapContainer);
-
-                            return <Marker key={index} position={[user.latitude,  user.latitude]} icon={markerIcon}>
+                            return <Marker key={index} position={[user.userlat,  user.userlon]} icon={markerIcon}>
                                 <Popup>
-                                    <h3>{user}</h3>
+                                    <h3>{user.user}</h3>
                                     A Client is in need of Help. <br /> HELP ME!!!<br />
-                                    Client location:  {`${user.latitude}, ${user.latitude}`}<br />
+                                    Client location:  {`${user.userlat}, ${user.userlon}`}<br />
                                     <h2>Nearest Division: Midrand</h2>
                                 </Popup>
                             </Marker>
@@ -67,11 +64,13 @@ function Division(props) {
                         }
 
                         {
-                            division ? division.map((div, ind) => <Circle key={ind} center={[div.latitude, div.longitude]} pathOptions={fillBlueOptions} radius={600} />)
+                            division ? division.map((div, ind) => <CircleMarker key={ind} center={[div.latitude, div.longitude]} pathOptions={redOptions} radius={15}>
+                                <Popup>{div.division}</Popup>
+                            </CircleMarker>)
                                 : ''
                         }
                         {/* <Circle center={center} pathOptions={fillBlueOptions} radius={200} /> */}
-                        {/* <CircleMarker center={[ -25.9928, 28.07]} pathOptions={redOptions} radius={15}>
+                        {/* <CircleMarker key={ind} center={[div.latitude, div.longitude]} pathOptions={redOptions} radius={15}>
                     <Popup>Popup in CircleMarker</Popup>
                 </CircleMarker> */}
                     </MapContainer>

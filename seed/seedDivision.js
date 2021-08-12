@@ -1,12 +1,10 @@
 
-let R = 500 // meters
+let R = 1000 // meters
 module.exports = (router, async,faker, randomLocation) => {
-    router.get("/seed",  (req, res, next) => {
+    router.get("/seed-div",  (req, res, next) => {
         const db = req.app.get('db');
         db.schema.hasTable("division").then(function (exists) {
             if (!exists) {
-                console.log("object,", randomGeo().longitude);
-
                 db.schema
                     .createTable("division", function (table) {
                         table.increments("id").primary();
@@ -31,7 +29,7 @@ module.exports = (router, async,faker, randomLocation) => {
                 res.send("Table division exists - Seeded data");
             }
         });
-        
+
     });
 
   function randomGeo(center, radius) {
@@ -46,4 +44,3 @@ module.exports = (router, async,faker, randomLocation) => {
 }
 
 
-  

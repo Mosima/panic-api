@@ -16,7 +16,7 @@ require('dotenv').config()
 
 
 const secret = require('./config/secret')
-const {divisionService} = require('./route/services')
+const {divisionService, panicService} = require('./service/services')
 
 const db = require("knex")({
     client: "pg",
@@ -49,14 +49,14 @@ app.use(cors(
 }));
 
 
+//seeding
+require('./seed/seedDivision')(app, async, faker, randomLocation);
+require('./seed/seedPanic')(app, async);
+
 //new routes
-require('./route/seed')(app, async, faker, randomLocation);
-require('./route/panic')(app, distance, divisionService);
+require('./route/panic')(app, distance, divisionService, panicService);
 
 
-// app.get('*', (req, res)=>{
-//    //res.sendFile(path.join(__dirname + '/client/build/index.html'));
-// });
 app.get('/', (req, res) => {
     res.send("Running")
   })

@@ -1,7 +1,7 @@
 import Grid from '@material-ui/core/Grid';
 import Admin from './component/admin/component'
 import User from './component/user/component'
-import './App.css';
+import '../src/assets/css/App.css';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
           <Admin />
         </Grid>
       </Grid>
-      
+
     </div>
   );
 }
